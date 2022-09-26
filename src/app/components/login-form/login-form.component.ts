@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Trainer } from 'src/app/models/trainer.model';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -10,7 +11,9 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginFormComponent{
   //Dependency injection
-  constructor(private readonly loginService: LoginService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +24,8 @@ export class LoginFormComponent{
 
     this.loginService.login(username).subscribe({
       next: (trainer: Trainer) => {
-        
+        //Redirect to catalogue page
+        this.router.navigateByUrl("/catalogue")
       },
       error: () => {
 
