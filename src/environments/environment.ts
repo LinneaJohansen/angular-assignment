@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiTrainers: "https://assignment6-mul.herokuapp.com/trainers",
+  apiPokemons: "https://pokeapi.co/",
+  apiKey: "1eLhEr5t/0uCkqaxIDWvgw=="
 };
 
 /*
