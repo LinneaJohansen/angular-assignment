@@ -30,8 +30,6 @@ export class LoginService {
   }
 
   //Login
-
-
   //Check if user exist
   private checkUsername(username: string): Observable<Trainer | undefined> {
     return this.http.get<Trainer[]>(`${apiTrainers}?username=${username}`).pipe(
