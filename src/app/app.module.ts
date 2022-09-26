@@ -10,6 +10,7 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { CatalogueFormComponent } from './components/catalogue-form/catalogue-form.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,8 +25,9 @@ import { CatalogueFormComponent } from './components/catalogue-form/catalogue-fo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
