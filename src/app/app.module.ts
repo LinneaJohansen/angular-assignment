@@ -9,6 +9,8 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
 import { CatalogueFormComponent } from './components/catalogue-form/catalogue-form.component';
+import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
+import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { CatalogueFormComponent } from './components/catalogue-form/catalogue-fo
     CataloguePage,
     LoginFormComponent,
     TrainerFormComponent,
-    CatalogueFormComponent
+    CatalogueFormComponent,
+    PokemonListComponent,
+    PokemonListItemComponent
   ],
   imports: [
     BrowserModule,
