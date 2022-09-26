@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginPage } from './pages/login/login.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { TrainerFormComponent } from './components/trainer-form/trainer-form.component';
+import { CatalogueFormComponent } from './components/catalogue-form/catalogue-form.component';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
     AppComponent,
     LoginPage,
     TrainerPage,
-    CataloguePage
+    CataloguePage,
+    LoginFormComponent,
+    TrainerFormComponent,
+    CatalogueFormComponent
   ],
   imports: [
     BrowserModule,
