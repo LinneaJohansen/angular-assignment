@@ -12,16 +12,34 @@ const {apiPokemons} = environment;
   styleUrls: ['./trainer-form.component.css']
 })
 export class TrainerFormComponent implements OnInit {
+
+  public trainerPokemons = this.trainerService.trainer?.pokemon;
+ // public imgUrls: string[] = [];
+  public imgUrls = this.trainerService.findIdOfPokemon()
+  public setOfPokemons: Object[] = [];
+
+  public addNameAndUrl(){
+    console.log("we started")
+    for(let p of this.imgUrls){
+      console.log(p)
+    }
+    for(let i = 0; i < this.trainerPokemons!.length; i++){
+      
+      this.setOfPokemons.push({name: this.trainerPokemons![i], url: this.imgUrls[i]})
+      
+    }
+    console.log(this.trainerPokemons)
+    console.log(this.imgUrls)
+    console.log(this.setOfPokemons);
+  }
+
+ 
   
   constructor(
     private readonly trainerService: TrainerService) { }
-    public trainerPokemons = this.trainerService.trainer?.pokemon;
-    public apiU = apiPokemons + "/" +`${this.trainerPokemons![0]}`;
-    public imgIds: string[] = [];
 
   ngOnInit(): void {
-    this.imgIds = this.trainerService.findIdOfPokemon();
-    console.log(this.imgIds)
+    this.addNameAndUrl();
   }
 
 
