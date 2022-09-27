@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
+import { environment } from 'src/environments/environment';
 import { TrainerService } from './trainer.service';
 
 describe('TrainerService', () => {
