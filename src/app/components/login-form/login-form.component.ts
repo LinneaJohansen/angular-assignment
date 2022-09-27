@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Trainer } from 'src/app/models/trainer.model';
 import { LoginService } from 'src/app/services/login.service';
+import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,13 +11,13 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent{
+
+  @Output() login: EventEmitter<void> = new EventEmitter();
+
   //Dependency injection
   constructor(
-    private readonly router: Router,
-    private readonly loginService: LoginService) { }
-
-  ngOnInit(): void {
-  }
+    private readonly loginService: LoginService,
+    private readonly trainerService: TrainerService) { }
 
   public loginSubmit(loginForm : NgForm): void {
     //Username
@@ -24,11 +25,12 @@ export class LoginFormComponent{
 
     this.loginService.login(username).subscribe({
       next: (trainer: Trainer) => {
-        //Redirect to catalogue page
-        this.router.navigateByUrl("/catalogue")
+        //Redirect to a different page
+        this.trainerService.trainer = trainer;
+        this.login.emit();
       },
       error: () => {
-
+        //Handle error
       }
     })
   }

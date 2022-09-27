@@ -1,10 +1,8 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Injectable } from '@angular/core';
-import { map, switchMap, Observable, of, tap } from 'rxjs';
+import { map, switchMap, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { StorageKeys } from '../enums/storage-keys.enum';
 import { Trainer } from '../models/trainer.model';
-import { StorageUtil } from '../utils/storage.utils';
 
 const { apiTrainers, apiKey } = environment;
 
@@ -23,19 +21,13 @@ export class LoginService {
     .pipe(
       switchMap((trainer: Trainer | undefined) => {
         if(trainer === undefined) {
-          //User does not exist
+          //User does not exist, create a new user
           return this.createTrainer(username)
         }
           return of(trainer)
-        }),
-        tap((trainer: Trainer) => {
-          StorageUtil.storageSave<Trainer>(StorageKeys.Trainer, trainer);
         })
       )
   }
-
-  //Login
-
 
   //Check if user exist
   private checkUsername(username: string): Observable<Trainer | undefined> {
@@ -47,7 +39,7 @@ export class LoginService {
 
   //Create trainer
   private createTrainer(username: string): Observable<Trainer> {
-    // User
+    // Instansiate trainer
     const trainer = {
       username,
       pokemon: []
@@ -60,7 +52,5 @@ export class LoginService {
     // POST request
     return this.http.post<Trainer>(apiTrainers, trainer, {headers});
   }
-
-  //If user DO exist || is created, store user, continue
 
 }
