@@ -1,8 +1,11 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { environment } from 'src/environments/environment';
+import { finalize } from 'rxjs';
+
 const { apiPokemons } = environment;
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +33,6 @@ export class CatalogueService {
   public findAllPokemons(): void {
     this._loading = true;
     this.http.get<Pokemon[]>(apiPokemons)
-    /* This should be here, but it gives an error */
       .pipe(
         finalize(() => {
           this._loading = false;
@@ -39,6 +41,7 @@ export class CatalogueService {
       .subscribe({
         next: (pokemons: Pokemon[]) => {
             this._pokemons = pokemons;
+            console.log(pokemons);
         },
         error: (error: HttpErrorResponse) => {
           this._error = error.message;
