@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 import { finalize } from 'rxjs';
+import { PokemonListComponent } from '../components/pokemon-list/pokemon-list.component';
 
 const { apiPokemons } = environment;
 
@@ -29,7 +30,28 @@ export class CatalogueService {
   }
 
   constructor(private readonly http: HttpClient) { }
+  
+  public findAllPokemons(): void {
+    let pkmList: Pokemon[] = [];
+    fetch(apiPokemons + '?limit=151')
+     .then(response => response.json())
+     .then(function(allpokemon){
+      console.log(allpokemon);
+     allpokemon.results.forEach(function(pokemon: Pokemon){
+        pkmList.push(pokemon);
+        console.log(pokemon.name);       
+     })
+    })
+    this._pokemons = pkmList;
+  }
 
+  public getSprite(): void {
+    
+  }
+      
+          
+
+/*
   public findAllPokemons(): void {
     this._loading = true;
     this.http.get<Pokemon[]>(apiPokemons)
@@ -47,5 +69,5 @@ export class CatalogueService {
           this._error = error.message;
         }
       })
-  }
+  }*/
 }
