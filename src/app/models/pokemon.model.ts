@@ -1,13 +1,14 @@
 //Interfaces for elements in Pokemon database
 export interface Pokemon {
-    id: number;
     name: string;
-    height: number;
-    weight: number;
-    base_experience: number;
-    sprites: PokemonSprites;
+    url: string;
 }
 
+
+export interface PokemonInfo {
+    
+    sprites: PokemonSprites;
+}
 export interface PokemonSprites {
     back_default: string;
     back_female: string;
