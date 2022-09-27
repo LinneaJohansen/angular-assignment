@@ -10,6 +10,7 @@ export class LoginPage {
 
   constructor(private readonly router: Router) { }
 
+  //Sends user to catalogue on successful login
   handleLogin(): void {
     this.router.navigateByUrl("/catalogue");
   }

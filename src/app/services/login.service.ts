@@ -21,7 +21,7 @@ export class LoginService {
     .pipe(
       switchMap((trainer: Trainer | undefined) => {
         if(trainer === undefined) {
-          //User does not exist
+          //User does not exist, create a new user
           return this.createTrainer(username)
         }
           return of(trainer)
@@ -29,7 +29,6 @@ export class LoginService {
       )
   }
 
-  //Login
   //Check if user exist
   private checkUsername(username: string): Observable<Trainer | undefined> {
     return this.http.get<Trainer[]>(`${apiTrainers}?username=${username}`).pipe(
@@ -40,7 +39,7 @@ export class LoginService {
 
   //Create trainer
   private createTrainer(username: string): Observable<Trainer> {
-    // User
+    // Instansiate trainer
     const trainer = {
       username,
       pokemon: []
@@ -53,7 +52,5 @@ export class LoginService {
     // POST request
     return this.http.post<Trainer>(apiTrainers, trainer, {headers});
   }
-
-  //If user DO exist || is created, store user, continue
 
 }
