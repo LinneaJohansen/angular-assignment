@@ -1,5 +1,6 @@
 //Interfaces for elements in Pokemon database
 export interface Pokemon {
+    id: number;
     name: string;
     url: string;
 }
