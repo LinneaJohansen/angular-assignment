@@ -7,7 +7,7 @@
 export const environment = {
   production: false,
   apiTrainers: "https://assignment6-mul.herokuapp.com/trainers",
-  apiPokemons: "https://pokeapi.co/",
+  apiPokemons: "https://pokeapi.co/api/v2/pokemon?limit=2000",
   apiKey: "1eLhEr5t/0uCkqaxIDWvgw=="
 };
 
