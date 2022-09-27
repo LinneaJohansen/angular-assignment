@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
 
   }
 
+  //Checks if trainer is stored, else redirects to login
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

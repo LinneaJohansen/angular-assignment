@@ -5,6 +5,7 @@ import { CataloguePage } from "./pages/catalogue/catalogue.page";
 import { LoginPage } from "./pages/login/login.page";
 import { TrainerPage } from "./pages/trainer/trainer.page";
 
+//Routes the user depending on AuthGuard and if they're logged in
 const routes: Routes = [
     {
         path: "",
