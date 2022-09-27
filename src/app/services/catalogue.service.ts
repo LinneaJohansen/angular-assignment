@@ -16,6 +16,7 @@ export class CatalogueService {
   private _pokemons: Pokemon[] = [];
   private _error: string = "";
   private _loading: boolean = false;
+  public _imgUrl: string[] = []; 
 
   get pokemons(): Pokemon[] {
     return this._pokemons;
@@ -33,41 +34,19 @@ export class CatalogueService {
   
   public findAllPokemons(): void {
     let pkmList: Pokemon[] = [];
-    fetch(apiPokemons + '?limit=151')
+
+    fetch(apiPokemons + '?limit=2000')
      .then(response => response.json())
      .then(function(allpokemon){
       console.log(allpokemon);
      allpokemon.results.forEach(function(pokemon: Pokemon){
         pkmList.push(pokemon);
-        console.log(pokemon.name);       
+        console.log(pokemon.name);
+        let id:string = pokemon.url.substring(34, pokemon.url.length-1);
+        console.log(id);
+        pokemon.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + `${id}` +".png"  
      })
     })
-    this._pokemons = pkmList;
-  }
-
-  public getSprite(): void {
-    
-  }
-      
-          
-
-/*
-  public findAllPokemons(): void {
-    this._loading = true;
-    this.http.get<Pokemon[]>(apiPokemons)
-      .pipe(
-        finalize(() => {
-          this._loading = false;
-        })
-      )
-      .subscribe({
-        next: (pokemons: Pokemon[]) => {
-            this._pokemons = pokemons;
-            console.log(pokemons);
-        },
-        error: (error: HttpErrorResponse) => {
-          this._error = error.message;
-        }
-      })
-  }*/
+    this._pokemons = pkmList;  
+  }          
 }
