@@ -23,6 +23,7 @@ export class PokemonListItemComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  // can newPokemon be removed and replaced with this.pokemon?
   public collectPokemon(newPokemon: Pokemon): void {
     let trainer: Trainer | undefined = this.trainerService.trainer;
     if (trainer != undefined && this.pokemon != undefined && this.isCollected == false) {
