@@ -19,7 +19,16 @@ export class LoginFormComponent{
     private readonly loginService: LoginService,
     private readonly trainerService: TrainerService) { }
 
+    
+    ngOnInit(): void {
+      this.trainerService.trainer = undefined;
+      if (this.trainerService.trainer) {
+        this.login.emit();
+      }
+    }
+
   public loginSubmit(loginForm : NgForm): void {
+    
     //Username
     const { username } = loginForm.value;
 
