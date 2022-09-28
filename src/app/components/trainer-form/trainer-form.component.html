@@ -1,6 +1,9 @@
-
-<div *ngFor="let pokemon of trainer.pokemon">
-    <p>{{pokemon}}</p>
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
+<img src="./assets/img/pokemonbackround.png" alt="image" class="backroundImg">
+<div class="pokemonList bg-yellow-500">
+    <p class="pokemonHead">All the pokemons you have cought</p>
+    <div *ngFor="let pokemon of trainer.pokemon" class="pokemonCard">
+        <p class="pokemonName">{{pokemon}}</p>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="" class="pokemonImg">
+    </div>
 </div>
 
