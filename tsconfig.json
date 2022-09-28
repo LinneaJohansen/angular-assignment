@@ -28,8 +28,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "paths":{
-      "zlib":["node_modules/zlib"]
-    }
   }
 }

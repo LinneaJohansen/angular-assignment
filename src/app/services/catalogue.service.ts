@@ -48,5 +48,6 @@ export class CatalogueService {
      })
     })
     this._pokemons = pkmList;  
-  }          
+  }
+  
 }

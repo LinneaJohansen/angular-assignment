@@ -73,6 +73,5 @@ export class TrainerService {
     if(this._trainer != undefined){
       this._pokemons = this._trainer!.pokemon;
     }
-    
   }
 }
