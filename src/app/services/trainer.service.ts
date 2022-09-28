@@ -25,6 +25,7 @@ export class TrainerService {
   private pokemonId?: number | string;
   private _loading: boolean = false;
   public _imgUrl: string[] = []; 
+  static trainer: Trainer | undefined;
 
 
   //Get method for trainer
