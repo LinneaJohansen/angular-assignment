@@ -35,7 +35,7 @@ export class CatalogueService {
   public findAllPokemons(): void {
     let pkmList: Pokemon[] = [];
 
-    fetch(apiPokemons + '?limit=2000')
+    fetch(apiPokemons + '?limit=150')
      .then(response => response.json())
      .then(function(allpokemon){
       console.log(allpokemon);
@@ -50,4 +50,11 @@ export class CatalogueService {
     this._pokemons = pkmList;  
   }
   
+  public pokemonById(id: string): Pokemon | undefined {
+    return this._pokemons.find((pokemon: Pokemon) => pokemon.id === id);
+  }
+
+  public pokemonByName(name: string): Pokemon | undefined {
+    return this._pokemons.find((pokemon: Pokemon) => pokemon.name === name);
+  }
 }
