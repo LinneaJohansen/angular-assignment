@@ -39,6 +39,7 @@ export class TrainerService {
   }
 
   public findIdOfPokemon(): string[] {
+    let _imgUrl: string[] = []; 
     this._loading = true;
     for(let p of this._pokemons){
 
@@ -52,14 +53,14 @@ export class TrainerService {
         next: (pokemon: Pokemon) => {
           this._pokemon = pokemon;
           let myUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + `${pokemon.id}` +".png"
-          this._imgUrl.push(myUrl)
+          _imgUrl.push(myUrl)
         },
         error: () => {
           
         }
       })
     }
-    return this._imgUrl;
+    return _imgUrl;
 
     }
 

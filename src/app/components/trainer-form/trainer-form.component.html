@@ -1,5 +1,6 @@
-<p>{{trainerPokemons}}</p>
-<div *ngFor="let url of imgUrls">
-    <img src={{url}} alt="">
-    <p>Hello</p>
+
+<div *ngFor="let pokemon of trainer.pokemon">
+    <p>{{pokemon}}</p>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
 </div>
+
