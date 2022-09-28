@@ -70,7 +70,6 @@ export class TrainerService {
 
   constructor(private readonly http: HttpClient) { 
     this._trainer = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
-    this._pokemons = this._trainer!.pokemon;
-    
+
   }
 }
