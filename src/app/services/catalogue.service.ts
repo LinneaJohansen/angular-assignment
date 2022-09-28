@@ -44,7 +44,7 @@ export class CatalogueService {
         console.log(pokemon.name);
         let id:string = pokemon.url.substring(34, pokemon.url.length-1);
         console.log(id);
-        pokemon.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + `${id}` +".png"  
+        pokemon.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + `${id}` +".png"  
      })
     })
     this._pokemons = pkmList;  
