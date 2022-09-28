@@ -3,6 +3,7 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 import { StorageUtil } from 'src/app/utils/storage.utils';
 import { TrainerService } from 'src/app/services/trainer.service';
 import { environment } from 'src/environments/environment';
+import { Trainer } from 'src/app/models/trainer.model';
 
 const {apiPokemons} = environment;
 
@@ -13,13 +14,13 @@ const {apiPokemons} = environment;
 })
 export class TrainerFormComponent implements OnInit {
 
-  public trainerPokemons = this.trainerService.trainer?.pokemon;
- // public imgUrls: string[] = [];
+  public trainer: Trainer = this.trainerService.trainer!;
+  public trainerPokemons?: Pokemon[] = this.trainer?.pokemon;
+  // public imgUrls: string[] = [];
   public imgUrls = this.trainerService.findIdOfPokemon()
   public setOfPokemons: Object[] = [];
 
   public addNameAndUrl(){
-    console.log("we started")
     for(let p of this.imgUrls){
       console.log(p)
     }
@@ -28,7 +29,9 @@ export class TrainerFormComponent implements OnInit {
       this.setOfPokemons.push({name: this.trainerPokemons![i], url: this.imgUrls[i]})
       
     }
+    console.log("pokemons")
     console.log(this.trainerPokemons)
+    console.log("pokemon2")
     console.log(this.imgUrls)
     console.log(this.setOfPokemons);
   }
@@ -36,7 +39,9 @@ export class TrainerFormComponent implements OnInit {
  
   
   constructor(
-    private readonly trainerService: TrainerService) { }
+    private readonly trainerService: TrainerService) {
+      console.log(this.trainer)
+     }
 
   ngOnInit(): void {
     this.addNameAndUrl();

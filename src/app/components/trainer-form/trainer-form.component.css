@@ -1,0 +1,35 @@
+.pokemonCard{
+    margin: auto;
+    width: 300px;
+    border-radius: 10px;
+    background: rgb(140, 169, 172);
+    margin-bottom: 10px;
+}
+
+.pokemonName{
+    text-align: center;
+}
+
+.pokemonImg{
+    margin-left: 105px;
+    width: 90px;
+}
+
+.pokemonList{
+    margin: -1000px auto ;
+    border-radius: 20px;
+    height: 800px;
+    width: 500px;
+    z-index: 1;
+    position: relative;
+    background: rgba(0,0,0,0.7);
+}
+.pokemonHead{
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.backroundImg{
+    height: 1183px;
+}
