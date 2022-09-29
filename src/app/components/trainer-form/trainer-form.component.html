@@ -1,9 +1,10 @@
 <img src="./assets/img/pokemonbackround.png" alt="image" class="backroundImg">
 <div class="pokemonList bg-yellow-500">
     <p class="pokemonHead">Hello {{trainer.username}}, here are your pokemons</p>
-    <div *ngFor="let pokemon of trainer.pokemon" class="pokemonCard">
+    <div *ngFor="let pokemon of trainerPokemons" class="pokemonCard">
         <p class="pokemonName">{{pokemon.name}}</p>
         <img src="{{pokemon.sprite}}" alt="" class="pokemonImg">
+        <button class="removePokemon" (click)="onPokemonRemoveClick(pokemon)">Remove</button>
     </div>
 </div>
 
