@@ -24,7 +24,43 @@ export class CaughtService {
     private readonly catalogueService: CatalogueService,
     private readonly trainerService: TrainerService,
   ) { }
+
+  public removeFromPokemons(pokemonToRemove: Pokemon): Observable<Trainer> {
+    if(!this.trainerService.trainer){
+      throw new Error("addToPokemons: No trainer found")
+    }
+    
+    const trainer: Trainer = this.trainerService.trainer
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey
+    })
+
+    this._loading = true;
+    let newPokemonList: Pokemon[] = [];
+
+    for(let pokemon of trainer.pokemon){
+      if(pokemon.name != pokemonToRemove.name){
+        newPokemonList = [...newPokemonList, pokemon]
+      }
+    }
+
+    return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
+      pokemon: newPokemonList
+    }, {
+      headers
+    })
+    .pipe(
+      tap((updatedTrainer: Trainer) =>{
+        this.trainerService.trainer = updatedTrainer;
+      }),
+      finalize(() => {
+        this._loading = false
+      })
+    )
+  }
   public addToPokemons(pokemonAdding: Pokemon): Observable<Trainer> {
+    console.log("DO WE LOG HERE?")
     if(!this.trainerService.trainer){
       throw new Error("addToPokemons: No trainer found")
     }
@@ -37,6 +73,7 @@ export class CaughtService {
     }
 
     if(this.trainerService.inPokemons(pokemonAdding)){
+      alert("Pokemon already in pokemonList")
       throw new Error("Pokemon already in pokemonlist")
     }
 
@@ -55,6 +92,10 @@ export class CaughtService {
     })
     .pipe(
       tap((updatedTrainer: Trainer) =>{
+        console.log("FIRST TRAINER")
+        console.log(this.trainerService.trainer)
+        console.log("SECOND TRAINER")
+        console.log(updatedTrainer)
         this.trainerService.trainer = updatedTrainer;
       }),
       finalize(() => {
