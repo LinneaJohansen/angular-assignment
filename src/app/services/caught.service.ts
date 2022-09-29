@@ -73,6 +73,7 @@ export class CaughtService {
     }
 
     if(this.trainerService.inPokemons(pokemonAdding)){
+      alert("Pokemon already in pokemonList")
       throw new Error("Pokemon already in pokemonlist")
     }
 
