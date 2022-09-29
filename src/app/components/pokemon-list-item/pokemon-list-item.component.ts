@@ -24,23 +24,16 @@ export class PokemonListItemComponent implements OnInit {
   }
   
   // can newPokemon be removed and replaced with this.pokemon?
-  public collectPokemon(newPokemon: Pokemon): void {
-    let trainer: Trainer | undefined = this.trainerService.trainer;
-    if (trainer != undefined && this.pokemon != undefined && this.isCollected == false) {
-      trainer.pokemon.push(newPokemon);
-      this.isCollected = true;
-
-      console.log(this.pokemon);
-
-      this.caughtService.addToCaught(newPokemon)
-      .subscribe({
-        next: (response: Trainer) => {
-          console.log("NEXT", response)
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log("ERROR", error.message);
-        }
+  onPokemonAddClick(pokemonToAdd: Pokemon): void{
+    //id is correct here
+    this.caughtService.addToPokemons(pokemonToAdd)
+    .subscribe({
+      next: (response: Trainer) => {
+        console.log("NEXT", response)
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log("ERROR", error.message);
+      }
     })
-    }
   }
 }
