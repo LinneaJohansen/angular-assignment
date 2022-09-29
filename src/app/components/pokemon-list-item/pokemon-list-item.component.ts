@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
@@ -41,8 +41,6 @@ export class PokemonListItemComponent implements OnInit {
           console.log("ERROR", error.message);
         }
     })
-
-
     }
   }
 }

@@ -1,15 +1,15 @@
-<li *ngIf="pokemon" class="mb-4 shadow w-30 relative">
-    <app-caughtbutton [pokemonId]="pokemon.id"></app-caughtbutton>
-    <section class="p-4">
+<li *ngIf="pokemon" class="shadow relative grid grid-cols-2 gap-1 grid-rows-3 justify-items-center px-8 w-64 mb-4 pt-8"> <!--m-1000px-->
+    <!--<app-caughtbutton [pokemonId]="pokemon.id"></app-caughtbutton>-->
+    <section class="p-4 row-start-1 row-end-1 col-start-1 col-end-1">
         <span class="text- xl">{{ pokemon.name }}</span>
     </section>
-    <section class="p-4">
-        <img src={{pokemon.sprite}} alt={{pokemon.name}} class="block w-30"/>
+    <section class="p-4 row-start-2 row-end-2 col-span-2">
+        <img src={{pokemon.sprite}} alt={{pokemon.name}} class="block w-24"/>
     </section>
-    <section class="p-4">
+    <section class="p-4 row-start-3 row-end-3 col-span-2">
         <button class="bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded" (click)="collectPokemon(pokemon)" >{{ isCollected ? 'Collected' : 'Collect' }}</button> <!--remove pokemon from collectPokemon() later-->
     </section>
-    <section *ngIf="isCollected">
+    <section *ngIf="isCollected" class="p-4 row-start-1 row-end-1 col-start-2 col-end-2">
         <img id="{{ pokemon.name }}-pokeball" src="..\assets\sprites\poke-ball.png" alt="pokeball"/>
     </section>
 </li>
