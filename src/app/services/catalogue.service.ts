@@ -2,8 +2,6 @@ import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { environment } from 'src/environments/environment';
-import { finalize } from 'rxjs';
-import { PokemonListComponent } from '../components/pokemon-list/pokemon-list.component';
 
 const { apiPokemons } = environment;
 
@@ -38,12 +36,9 @@ export class CatalogueService {
     fetch(apiPokemons + '?limit=150')
      .then(response => response.json())
      .then(function(allpokemon){
-      console.log(allpokemon);
      allpokemon.results.forEach(function(pokemon: Pokemon){
         pkmList.push(pokemon);
-        console.log(pokemon.name);
         let id:string = pokemon.url.substring(34, pokemon.url.length-1);
-        console.log(id);
         pokemon.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + `${id}` +".png"  
      })
     })

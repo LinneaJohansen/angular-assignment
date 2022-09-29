@@ -24,7 +24,6 @@ export class PokemonListItemComponent implements OnInit {
   }
   
   onPokemonAddClick(): void{
-    //id is correct here
     this.isCollected = true;
     if (this.pokemon != undefined) {
       this.caughtService.addToPokemons(this.pokemon)
