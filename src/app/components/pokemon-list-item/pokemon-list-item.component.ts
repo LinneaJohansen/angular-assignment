@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
@@ -23,17 +23,19 @@ export class PokemonListItemComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  // can newPokemon be removed and replaced with this.pokemon?
-  onPokemonAddClick(pokemonToAdd: Pokemon): void{
+  onPokemonAddClick(): void{
     //id is correct here
-    this.caughtService.addToPokemons(pokemonToAdd)
-    .subscribe({
-      next: (response: Trainer) => {
-        console.log("NEXT", response)
-      },
-      error: (error: HttpErrorResponse) => {
-        console.log("ERROR", error.message);
-      }
-    })
+    this.isCollected = true;
+    if (this.pokemon != undefined) {
+      this.caughtService.addToPokemons(this.pokemon)
+      .subscribe({
+        next: (response: Trainer) => {
+          console.log("NEXT", response)
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log("ERROR", error.message);
+        }
+      })
+    }
   }
 }
