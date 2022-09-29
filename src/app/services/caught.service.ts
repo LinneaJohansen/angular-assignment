@@ -24,39 +24,42 @@ export class CaughtService {
     private readonly catalogueService: CatalogueService,
     private readonly trainerService: TrainerService,
   ) { }
-
-  public addToCaught(caughtPkm: Pokemon): Observable <Trainer> {
-
+  public addToPokemons(pokemonAdding: Pokemon): Observable<Trainer> {
     if(!this.trainerService.trainer){
-      throw new Error("Trainer does not exist");
+      throw new Error("addToPokemons: No trainer found")
+    }
+    
+    const trainer: Trainer = this.trainerService.trainer
+    const pokemon: Pokemon | undefined = this.catalogueService.pokemonByName(pokemonAdding.name)
+
+    if(!pokemon){
+      throw new Error("addToPokemon: no pokemon found")
     }
 
-    const trainer: Trainer | undefined = this.trainerService.trainer;
-
-    console.log("Logged pkm: " + caughtPkm.name)
-
-    if(!caughtPkm){
-      throw new Error("No pokemon with that name exist");
+    if(this.trainerService.inPokemons(pokemonAdding)){
+      throw new Error("Pokemon already in pokemonlist")
     }
 
     const headers = new HttpHeaders({
-      'content-type': 'application.json',
+      'content-type': 'application/json',
       'x-api-key': apiKey
     })
 
     this._loading = true;
-
-    
-
+   // this.trainerService.addPokemon(pokemonAdding);
 
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
-      pokemon: [...trainer.pokemon, caughtPkm.name]
-    }, { headers }).pipe(
-      tap((updatedTrainer: Trainer) => {
+      pokemon: [...trainer.pokemon, pokemon]
+    }, {
+      headers
+    })
+    .pipe(
+      tap((updatedTrainer: Trainer) =>{
         this.trainerService.trainer = updatedTrainer;
       }),
       finalize(() => {
-        this._loading = false;
-    }))
+        this._loading = false
+      })
+    )
   }
 }

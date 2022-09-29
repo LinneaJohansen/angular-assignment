@@ -65,6 +65,13 @@ export class TrainerService {
 
     }
 
+    public inPokemons(pokemonSelected: Pokemon): boolean{
+      if(this.trainer){
+        return Boolean(this.trainer.pokemon.find((pokemon: Pokemon) => pokemon.name === pokemonSelected.name));
+      }
+      return false;
+    }
+
     /*
   get imgUrls(): number[]{
     return this._imgUrl;
