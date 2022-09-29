@@ -21,6 +21,7 @@ export class PokemonListItemComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  //At click function for pokemons adds them to the trainers pokemons
   onPokemonAddClick(): void{
     this.isCollected = true;
     if (this.pokemon != undefined) {

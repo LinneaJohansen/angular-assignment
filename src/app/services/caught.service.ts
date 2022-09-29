@@ -25,6 +25,7 @@ export class CaughtService {
     private readonly trainerService: TrainerService,
   ) { }
 
+  //patch method to delete a pokemon from a trainer in the api.
   public removeFromPokemons(pokemonToRemove: Pokemon): Observable<Trainer> {
     if(!this.trainerService.trainer){
       throw new Error("addToPokemons: No trainer found")
@@ -59,6 +60,8 @@ export class CaughtService {
       })
     )
   }
+
+  //patch metod to update api, adds a pokemon to trainers pokemons
   public addToPokemons(pokemonAdding: Pokemon): Observable<Trainer> {
     console.log("DO WE LOG HERE?")
     if(!this.trainerService.trainer){
@@ -67,24 +70,18 @@ export class CaughtService {
     
     const trainer: Trainer = this.trainerService.trainer
     const pokemon: Pokemon | undefined = this.catalogueService.pokemonByName(pokemonAdding.name)
-
     if(!pokemon){
       throw new Error("addToPokemon: no pokemon found")
     }
-
     if(this.trainerService.inPokemons(pokemonAdding)){
       alert("Pokemon already in pokemonList")
       throw new Error("Pokemon already in pokemonlist")
     }
-
     const headers = new HttpHeaders({
       'content-type': 'application/json',
       'x-api-key': apiKey
     })
-
     this._loading = true;
-   // this.trainerService.addPokemon(pokemonAdding);
-
     return this.http.patch<Trainer>(`${apiTrainers}/${trainer.id}`, {
       pokemon: [...trainer.pokemon, pokemon]
     }, {

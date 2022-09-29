@@ -2,14 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { StorageUtil } from 'src/app/utils/storage.utils';
 import { TrainerService } from 'src/app/services/trainer.service';
-import { environment } from 'src/environments/environment';
 import { Trainer } from 'src/app/models/trainer.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CaughtService } from 'src/app/services/caught.service';
-
-
-
-const {apiPokemons} = environment;
 
 @Component({
   selector: 'app-trainer-form',
@@ -20,21 +15,8 @@ export class TrainerFormComponent implements OnInit {
 
   public trainer: Trainer = this.trainerService.trainer!;
   public trainerPokemons: Pokemon[] = this.trainer.pokemon;
-  // public imgUrls: string[] = [];
-  public imgUrls = this.trainerService.findIdOfPokemon()
-  public setOfPokemons: Object[] = [];
 
-  public addNameAndUrl(){
-    for(let p of this.imgUrls){
-      console.log(p)
-    }
-    for(let i = 0; i < this.trainerPokemons!.length; i++){
-      
-      this.setOfPokemons.push({name: this.trainerPokemons![i], url: this.imgUrls[i]})
-      
-    }
-  }
-
+    //Function for removing a specific pokemon from trainers list of pokemons
    public  onPokemonRemoveClick(pokemonToRemove: Pokemon){
     let newPokemonList: Pokemon[] = []
     this.trainerPokemons.forEach(pokemon => {
@@ -51,8 +33,8 @@ export class TrainerFormComponent implements OnInit {
           console.log("ERROR", error.message);
         }
       })
+      //updating the locally stored pokemons for trainer
       this.trainerPokemons = newPokemonList;
-      this.trainer = this.trainerService.trainer!;
   }
 
  
@@ -65,7 +47,6 @@ export class TrainerFormComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.addNameAndUrl();
   }
 
 

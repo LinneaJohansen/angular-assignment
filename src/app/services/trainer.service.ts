@@ -38,44 +38,13 @@ export class TrainerService {
     StorageUtil.storageSave<Trainer>(StorageKeys.Trainer, trainer!);
     this._trainer = trainer;
   }
-
-  public findIdOfPokemon(): string[] {
-    let _imgUrl: string[] = []; 
-    this._loading = true;
-    for(let p of this._pokemons){
-
-      this.http.get<Pokemon>(apiPokemons + "/" + p)
-      .pipe(
-        finalize(() => {
-          this._loading = false;
-        })
-      )
-      .subscribe({
-        next: (pokemon: Pokemon) => {
-          this._pokemon = pokemon;
-          let myUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + `${pokemon.id}` +".png"
-          _imgUrl.push(myUrl)
-        },
-        error: () => {
-          
-        }
-      })
-    }
-    return _imgUrl;
-
-    }
-
+    //Checking if a pokemon already exists in trainest list of pokemons
     public inPokemons(pokemonSelected: Pokemon): boolean{
       if(this.trainer){
         return Boolean(this.trainer.pokemon.find((pokemon: Pokemon) => pokemon.name === pokemonSelected.name));
       }
       return false;
     }
-
-    /*
-  get imgUrls(): number[]{
-    return this._imgUrl;
-  } */
 
   constructor(private readonly http: HttpClient) { 
     this._trainer = StorageUtil.storageRead<Trainer>(StorageKeys.Trainer);
