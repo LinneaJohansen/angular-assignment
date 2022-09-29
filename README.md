@@ -10,7 +10,7 @@ This is a Pokemon Trainer web app made using the Angular Framework. The app has 
 </ul>
 
 ## Usage
-The application can be used from the link: https://angular-pokemon-trainers.herokuapp.com/. It can also be runned locally in the terminal with the command npm start.
+The application can be used from the link: https://angular-pokemon-trainers.herokuapp.com/. It can also be runned locally in the terminal with the command ng serve.
 
 ## Maintainers
 Linnea Johansen, Ulrik Lunde, and Karoline Øijorden
