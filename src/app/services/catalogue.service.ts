@@ -37,7 +37,7 @@ export class CatalogueService {
   public findAllPokemons(): void {
     let pkmList: Pokemon[] = [];
 
-    fetch(apiPokemons + '?limit=150')
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=150") //apiPokemons + '?limit=150'
      .then(response => response.json())
      .then(function(allpokemon){
      allpokemon.results.forEach(function(pokemon: Pokemon){
