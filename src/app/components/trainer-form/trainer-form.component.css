@@ -33,3 +33,12 @@
 .backroundImg{
     height: 1183px;
 }
+.removePokemon{
+    margin-left: 100px;
+    width: 100px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    background: white;
+    border: 1px solid black;
+
+}
