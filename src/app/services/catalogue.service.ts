@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { environment } from 'src/environments/environment';
@@ -30,6 +30,10 @@ export class CatalogueService {
 
   constructor(private readonly http: HttpClient) { }
   
+  /** 
+   * gets name and ID of pokemons from the PokeAPI and stores it in a list of Pokemon objects. The fetch is limited to 150 pokemons
+   * gets a picture of the pokemons from https://raw.githubusercontent.com/PokeAPI.
+  */
   public findAllPokemons(): void {
     let pkmList: Pokemon[] = [];
 
@@ -45,10 +49,20 @@ export class CatalogueService {
     this._pokemons = pkmList;  
   }
   
+  /**
+   * get a Pokemon object by id
+   * @param id of pokemon
+   * @returns Pokemon
+   */
   public pokemonById(id: string): Pokemon | undefined {
     return this._pokemons.find((pokemon: Pokemon) => pokemon.id === id);
   }
 
+  /**
+   * get a Pokemon object by name
+   * @param name of Pokemon
+   * @returns Pokemon
+   */
   public pokemonByName(name: string): Pokemon | undefined {
     return this._pokemons.find((pokemon: Pokemon) => pokemon.name === name);
   }

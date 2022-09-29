@@ -4,7 +4,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Trainer } from 'src/app/models/trainer.model';
 import { CaughtService } from 'src/app/services/caught.service';
-import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
   selector: 'app-pokemon-list-item',
@@ -17,8 +16,7 @@ export class PokemonListItemComponent implements OnInit {
   public isCollected:Boolean = false;
 
   constructor(
-    private readonly caughtService: CaughtService,
-    private readonly trainerService: TrainerService) { }
+    private readonly caughtService: CaughtService) { }
 
   ngOnInit(): void {
   }
