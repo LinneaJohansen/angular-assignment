@@ -2,8 +2,8 @@
 <div class="pokemonList bg-yellow-500">
     <p class="pokemonHead">Hello {{trainer.username}}, here are your pokemons</p>
     <div *ngFor="let pokemon of trainer.pokemon" class="pokemonCard">
-        <p class="pokemonName">{{pokemon}}</p>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="" class="pokemonImg">
+        <p class="pokemonName">{{pokemon.name}}</p>
+        <img src="{{pokemon.sprite}}" alt="" class="pokemonImg">
     </div>
 </div>
 
